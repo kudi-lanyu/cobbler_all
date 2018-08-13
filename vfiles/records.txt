@@ -1,0 +1,7 @@
+cobbler distro add --clobber --in-place --name centos7_everything_7.5.1804 --kernel /mnt/images/pxeboot/vmlinuz --initrd /mnt/images/pxeboot/initrd.img --arch x86_64 --breed redhat --os-version rhel7 --kopts="ksdevice= inst.repo="http://192.168.1.77/cblr/"" --ksmata tree="http://192.168.1.77/cblr/ks_mirror/****"
+
+cobbler profile add --clobber --in-place --name centos7_all_profile --distro centos7_everything_7.5.1804 --enable-menu 1 --kickstart /var/lib/cobbler/kickstarts/sample_end.ks
+
+cobbler import --name centos7_auto_import --path /mnt
+
+cobbler distro edit --name centos7_auto_import-x86_64 --kopts="ksdevice=  inst.repo="http://192.168.1.77/cblr/ks_mirror/centos7_auto_import/""
